@@ -1,5 +1,4 @@
 import React from 'react'
-// import Avatar from 'react-avatar'
 import Avatar from './Avatar'
 
 const Client = ({ username}) => {

@@ -101,6 +101,9 @@ const Login = () => {
                     <a href=""><li>Efficient Database Implementation for Storing Individual Team's Code</li></a>
                    <a href="https://github.com/Keerthivardhan1/CodeLive/issues/2"><li>Enhanced Code Editor: Customizable Theme Selection and UI</li></a> 
                    <a href="https://github.com/Keerthivardhan1/CodeLive/issues/3"><li>Advanced Speech Recognition Module: Hands-free Coding Experience</li></a> 
+                   <a href="">
+                    <li>Implement Encreption and Decreption Algorithem At Server and Client Side</li>
+                   </a>
                    <a href="https://github.com/Keerthivardhan1/CodeLive"> <li>Contribute To Project</li></a>
                 </ul>
 

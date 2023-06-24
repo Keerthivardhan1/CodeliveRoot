@@ -12,6 +12,10 @@ export default {
       extensions: ['.js', '.jsx' , 'css'], // Specify the extensions to be resolved
     }),
     commonjs(),
-    postcss(),
+    postcss({
+    extract: true,
+    modules: false,
+    minimize: true,
+    }),
   ],
 };

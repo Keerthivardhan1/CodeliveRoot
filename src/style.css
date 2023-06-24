@@ -1,0 +1,407 @@
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.main-heading{
+  color: #DEE3EA;
+  font-size: 2rem;
+  text-align: center;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  /* overflow: hidden; */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+}
+
+.login-page::after , .login-page::before{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  width: 15rem;
+  aspect-ratio: 1/1;
+  filter: blur(100px);
+  background:  #facc15;
+}
+
+.login-page::before{
+  top: -5rem; left: -5rem;
+}
+
+.login-page::after{
+  top: unset; left: unset;
+  bottom: -5rem ;
+  right: -5rem;
+}
+
+.login-page nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  width: 90%;
+  position: fixed;
+  top: 0;
+  padding-top: 1rem;
+  z-index: 1;
+  padding-inline: 15%;
+  text-transform: capitalize;
+  background: transparent;
+    backdrop-filter: blur(1rem);
+  font-size: 1.2rem;
+}
+
+
+h5{
+  letter-spacing: 0.1rem;
+}
+ h5:hover{
+  color: #facc15;
+}
+
+
+.logo3{
+  width: 1.9rem;
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+
+
+h1 {
+  font-size: 2.8em;
+  line-height: 1.1;
+  margin-top: 6rem;
+  
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.login-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #141414;
+
+}
+.login-page section{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  justify-content: space-around;
+
+}
+
+.leftContent h1{
+  font-size: 5rem;
+  letter-spacing: 0.5rem;
+  line-height: 7rem;
+}
+
+
+.login-box {
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  background: rgba(24, 20, 20, 0.987);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.loginboxwrapper{
+  --background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+  background: var(--background);
+  overflow: visible;
+  height: max-content;
+  margin: 0.3rem;
+
+}
+
+.loginboxwrapper::after {
+  position: absolute;
+  content: "";
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.8);
+  filter: blur(25px);
+  background: #f7ba2b;
+  background: var(--background);
+  transition: opacity .5s;
+ }
+
+.login-box:hover{
+    box-shadow: 0px 0px 30px 1px #f7ba2b; 
+    transform: scale(0.98);
+    border-radius: 20px;
+   
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #bdb8b8;
+  font-size: 12px;
+}
+
+.login-box form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box button:hover {
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #535bf2,
+              0 0 25px #3a40a9,
+              0 0 50px #1f225e,
+              0 0 100px #10112e;
+}
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box button  {
+  border-bottom: 1px solid #1f225e;
+}
+
+.aInP{
+  background-color: none;
+  border: none;
+  font-size: medium;
+
+}
+
+.tagline{
+  justify-content: center;
+  width: 74%;
+  line-height: 1.5rem;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+.preview{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100vw;
+  height: 40vh;
+
+}
+
+.preview-content{
+  line-height: 28px;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  padding: 2rem;
+
+}
+
+
+.preview .image{
+  width: 65%;
+}
+
+.highlite{
+  color: #facc15;
+}
+
+.image{
+  display: block;
+  width: 60vw;
+  height: 50vh;
+  border: 2px solid red;
+}
+
+.todos{
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.todos h2{
+  margin: 0rem;
+  font-size: 3rem;
+}
+
+.todos p {
+  width: 80%;
+  line-height: 2rem;
+  font-size: large;
+}
+
+
+.todos ul{
+  list-style: none;
+  list-style-image: url('./assets/listStyle.svg');
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.todos ul a{
+  text-decoration: none;
+}
+
+.todos ul a:hover{
+  color: #facc15;
+}
+
+footer{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+    margin: 0;
+}
+
+footer ul a img:hover{
+  transform: scale(1.2);
+  fill: blue;
+  transition: all 0.2s;
+}
+
+footer center h3{
+  font-size: x-large;
+  color: #facc15;
+  letter-spacing: 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+}

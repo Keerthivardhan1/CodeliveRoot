@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./index.css"
 import Client from './Components/Client'
-import Editor from './Components/Editor.jsx'
+import Editor from './Components/Editor'
 import { initSocket } from './socket'
 import ACTIONS from './Actions'
 import { Navigate, useLocation  , useNavigate , useParams} from 'react-router-dom'

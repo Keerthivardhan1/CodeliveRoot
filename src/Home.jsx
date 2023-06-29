@@ -7,6 +7,7 @@ import ACTIONS from './Actions'
 import { Navigate, useLocation  , useNavigate , useParams} from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import logo from './assets/logo.svg'
+import { database } from './firebase';
 
 const Home = () => {
 
@@ -22,9 +23,14 @@ const Home = () => {
     const location = useLocation();
     const reactNavigator = useNavigate();
     const {teamID} = useParams();  
-    const codeRef = useRef(null); 
+    let codeToSave = useRef(null);
+    const codeRef = database.ref('code').child(teamID);
 
-  const [clients , setClients] = useState([])
+    const [clients , setClients] = useState([])
+
+  
+
+
     useEffect(()=>{
       const init = async ()=>{
         socketRef.current = await initSocket();
@@ -56,9 +62,9 @@ const Home = () => {
               console.log(`${userName} joined team`)
             }
             setClients(clients)
-        }
+            localStorage.setItem("clients" , clients );
           
-        )
+          })
 
         socketRef.current.on(ACTIONS.DISCONNECTED , ({socketID , userName})=>{
           if(userName !== location.state?.userName){
@@ -73,12 +79,23 @@ const Home = () => {
       
       }
       init()
+      
+
+    
 
     } , [])
+
+    useEffect(()=>{
+      if(clients == null){
+        setClients(localStorage.getItem('clients'));
+      } 
+    }
+      , [])
 
     function handleLeave(){
       console.log("leave clicked");
       reactNavigator('/')
+      toast.success(" Please close this tab to complete the disconnection process.")
     }
 
     async function CopyTeamID(){
@@ -91,7 +108,17 @@ const Home = () => {
     }
 
     function handlecodechange(code){
-      codeRef.current = code
+
+      codeToSave = code;
+      codeRef.set(codeToSave)
+
+
+    }
+
+    function clearStorage(){
+      codeRef.remove()
+      .then(()=>toast.success("code is cleared from databse"))
+      .catch((err)=>toast.error("unable to clear the code in databse " ))
     }
 
   if(!location.state){
@@ -118,10 +145,18 @@ const Home = () => {
                   
             </div>
 
-            <div className='btn' > 
-              <button className=" copyBtn" onClick={CopyTeamID}>Copy Team ID</button>
-              <button className="leave" onClick={handleLeave} >Leave</button>
+            <div className='allbtns'>
+              <div className='btn' > 
+                <button className=" copyBtn" onClick={CopyTeamID}>Copy Team ID</button>
+                <button className="leave" onClick={handleLeave} >Leave</button></div>
+              <div>
+                <button onClick={clearStorage}>Clear Code From Database</button>
+              </div>
+
             </div>
+
+            
+            
           </div>
         </div>
 
@@ -129,8 +164,8 @@ const Home = () => {
             <Editor 
             socketRef = {socketRef} 
             teamID = {teamID}  
-            onCodeChange = { handlecodechange
-            }
+            onCodeChange = { handlecodechange }
+            codeRef = {codeRef}
             />
         </div>
     </div>

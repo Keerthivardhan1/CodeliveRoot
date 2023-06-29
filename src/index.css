@@ -4,7 +4,7 @@
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #141414;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +33,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   position: relative;
   overflow-x: hidden;
 
@@ -54,7 +54,6 @@ body {
   width: 25vw;
   display: flex;
   flex-direction: column;
-  align-items: start;
   height: 100%;
   border: 2px solid #213547;
   background: #141414;
@@ -193,4 +192,16 @@ body {
   to {
     transform: rotate(359deg);
   }
+}
+
+.allbtns{
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  width: auto;
+
+}
+
+h3{
+  text-align: center;
 }

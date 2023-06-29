@@ -55,7 +55,7 @@ const Login = () => {
                 <h5 >Collaborative Code</h5>
             </nav>
             
-            <span className='main-heading'> <h1>Code With Your Team<span className='highlite'>.</span> Anytime<span className='highlite'>.</span> <br /> Anywhere</h1></span>
+            <span className='main-heading'> <h1>Code With Your Team<span className='highlite'>.</span> Anytime<span className='highlite'>.</span> <br /> Anywhere<span className='highlite'>.</span></h1></span>
             <p className="tagline">
                  <span className='highlite' >Our Collaborative Code Editor</span>  is designed to revolutionize the way teams collaborate on code. With our powerful and intuitive platform, you can <span className='highlite'> code together in real-time,</span>  no matter where your team members are located </p>
 
@@ -97,8 +97,8 @@ const Login = () => {
                 <h2> To-Do  <span className='highlite'>S </span> </h2>
                 <p>We welcome collaboration and invite you to contribute your ideas and expertise to enhance our project. Your valuable input is highly appreciated as we work together to create something exceptional. Feel free to join us and make a meaningful impact with your contributions.</p>
                 <ul>
-                   <a href="https://github.com/Keerthivardhan1/CodeLive/issues/1"><li>Integrating Code Sync Feature: Streamline Collaboration with New Team Members</li></a>
-                    <a href=""><li>Efficient Database Implementation for Storing Individual Team's Code</li></a>
+                   <a href="https://github.com/Keerthivardhan1/CodeLive/issues/1"><li>Enable Simultaneous Coding </li></a>
+                    <a href=""><li>Efficient Database Implementation for Storing Individual Team's Code <span className='highlite'>- Done</span> </li></a>
                    <a href="https://github.com/Keerthivardhan1/CodeLive/issues/2"><li>Enhanced Code Editor: Customizable Theme Selection and UI</li></a> 
                    <a href="https://github.com/Keerthivardhan1/CodeLive/issues/3"><li>Advanced Speech Recognition Module: Hands-free Coding Experience</li></a> 
                    <a href="">

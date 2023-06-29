@@ -7,51 +7,10 @@ import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/edit/closetag';
 import ACTIONS from '../Actions';
 
-const Editor = ({ socketRef, teamID , onCodeChange }) => {
+const Editor = ({ socketRef, teamID, onCodeChange, codeRef }) => {
   const editorRef = useRef(null);
   let flage = useRef(false);
-  useEffect(()=>{
-  
-    if(socketRef.current != null ){
-      socketRef.current.on(ACTIONS.CODE_CHANGE, ({ teamID: receivedTeamID, code }) => {
-    
-        if (receivedTeamID === teamID) {
-        editorRef.current.setValue(code);
-        }
-      }) 
-    }
-    return ()=>{
-      if(socketRef.current != null ){
-        socketRef.current.off(ACTIONS.CODE_CHANGE)
-      }
-    }
-  } , [socketRef.current])
-
-      // it is not team specific
-      useEffect(
-        () => {
-          console.log("came 1 ");
-
-          console.log("socketref == " , socketRef , "\n socketref.current == " , socketRef.current );
-
-          if(socketRef != null && socketRef.current!= null ){
-            console.log("came 3 ");
-
-        socketRef.current.on('newcode' , ({ socketid,code})=>{
-        
-          console.log("came 4 ");
-
-          console.log("came to newcode in editor with code" ,  code);
-          editorRef.current.setValue(code);
-        })
-
-      }
-
-        } , [socketRef.current])
-
- 
-
-
+  let codee = useRef();
 
   useEffect(() => {
     async function init() {
@@ -66,47 +25,64 @@ const Editor = ({ socketRef, teamID , onCodeChange }) => {
         autoCloseBrackets: true,
         lineNumbers: true,
       });
-      flage = true;
 
       editorRef.current.on('change', (instance, changes) => {
+        // editorRef.current.focus();
+        editorRef.current.focus();
+        // const cursor = editorRef.current.getCursor();
+        // console.log("cursor--" , cursor);
+        // editorRef.current.setCursor(cursor);
         const { origin } = changes;
         const code = instance.getValue();
+        onCodeChange(code);
+
         if (origin !== 'setValue') {
           socketRef.current.emit(ACTIONS.CODE_CHANGE, {
             teamID,
             code,
           });
         }
-
       });
-        
 
-      console.log(" when joined editorRef.current.getValue() is " , editorRef.current.getValue());
+      codeRef.on('value', (snapshot) => {
+        codee = snapshot.val();
+        if (codee) {
+          const cursor = editorRef.current.getCursor(); // Get current cursor position
+    editorRef.current.setValue(codee);
+    editorRef.current.setCursor(cursor); // Set the cursor back to its previous position
+    editorRef.current.focus();
+        }
+      });
+      
 
-      if(editorRef.current.getValue() === "" ){
-        console.log("0000");
-        editorRef.current.on('change', (instance, changes) => {
-          const { origin } = changes;
-          const code = instance.getValue();
-  
-          if (origin !== 'setValue' && (code != " "  && code != "\n") ) {
-            socketRef.current.emit(ACTIONS.CODE_CHANGE, {
-              teamID,
-              code,
-            });
-          }
-        });
-        
-      }
-
-      if (socketRef.current) {
-        socketRef.current.on('newcode', ({ socketid, code }) => {
-          editorRef.current.setValue(code);
-        });
-      }
+     
     }
     init();
+
+    return () => {
+      codeRef.off();
+    };
   }, []);
+
+  useEffect(() => {
+    if (socketRef.current != null) {
+      socketRef.current.on(ACTIONS.CODE_CHANGE, ({ teamID: receivedTeamID, code }) => {
+        if (receivedTeamID === teamID) {
+          editorRef.current.setValue(code);
+          // editorRef.current.focus();
+          // const cursor = editorRef.current.getCursor();
+          // console.log("cursor--" , cursor);
+          //
+        }
+      });
+    }
+
+    return () => {
+      if (socketRef.current != null) {
+        socketRef.current.off(ACTIONS.CODE_CHANGE);
+      }
+    };
+  }, [socketRef.current]);
 
   return (
     <div className='editor'>
